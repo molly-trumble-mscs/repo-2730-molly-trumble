@@ -1,6 +1,6 @@
 ﻿' Name:         Bakery Project
 ' Purpose:      Calculates the total number of 
-'               items sold And the total sales
+'               items sold and the total sales
 ' Programmer:   Molly Trumble on 8/30/2016
 
 Public Class frmMain
