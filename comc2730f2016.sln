@@ -17,6 +17,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "mtrumble1g1", "mtrumble1g1\
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "mtrumble1h1", "mtrumble1h1\mtrumble1h1.vbproj", "{77C0EC75-AD85-46FC-9F96-C85F0E219B73}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "mtrumble2a1", "mtrumble2a1\mtrumble2a1.vbproj", "{CE7BBF78-CAF8-4A45-B7DA-DE50093A74E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{77C0EC75-AD85-46FC-9F96-C85F0E219B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77C0EC75-AD85-46FC-9F96-C85F0E219B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77C0EC75-AD85-46FC-9F96-C85F0E219B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE7BBF78-CAF8-4A45-B7DA-DE50093A74E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7BBF78-CAF8-4A45-B7DA-DE50093A74E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7BBF78-CAF8-4A45-B7DA-DE50093A74E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7BBF78-CAF8-4A45-B7DA-DE50093A74E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
