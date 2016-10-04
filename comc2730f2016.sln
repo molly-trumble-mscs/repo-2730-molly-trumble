@@ -21,6 +21,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "mtrumble2a1", "mtrumble2a1\
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "mtrumble2b1", "mtrumble2b1\mtrumble2b1.vbproj", "{74E720ED-58BC-4D73-AEE1-D1D2A671F5BE}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "mtrumble2c1", "mtrumble2c1\mtrumble2c1.vbproj", "{DC3490D3-68C8-43F9-B8EB-71DBCD107C83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{74E720ED-58BC-4D73-AEE1-D1D2A671F5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74E720ED-58BC-4D73-AEE1-D1D2A671F5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74E720ED-58BC-4D73-AEE1-D1D2A671F5BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC3490D3-68C8-43F9-B8EB-71DBCD107C83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC3490D3-68C8-43F9-B8EB-71DBCD107C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC3490D3-68C8-43F9-B8EB-71DBCD107C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC3490D3-68C8-43F9-B8EB-71DBCD107C83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
