@@ -13,7 +13,12 @@ Public Class frmMain
         ' tax, total resort fee, and total due
 
         Const intMAX_PER_ROOM As Integer = 6
-        Const dblDAILY_ROOM_CHG As Double = 225.5
+        'Const dblDAILY_ROOM_CHG As Double = 225.5
+        Const dblDAILY_ROOM_CHG_QUEEN_STD As Double = 225.5
+        Const dblDAILY_ROOM_CHG_QUEEN_ATR As Double = 275
+        Const dblDAILY_ROOM_CHG_KING_STD As Double = 245.5
+        Const dblDAILY_ROOM_CHG_KING_ATR As Double = 325
+        Const dblDAILY_PARKING_FEE As Double = 8.5
         Const dblTAX_RATE As Double = 0.1625
         Const dblDAILY_RESORT_FEE As Double = 12.5
         Const strMSG As String = "You have exceeded the maximum guests per room."
@@ -23,39 +28,66 @@ Public Class frmMain
         Dim intChildren As Integer
         Dim intNumGuests As Integer
         Dim dblRoomsRequired As Double
+        Dim dblParkingFee As Double
+        Dim dblDailyRoomChg As Double
         Dim dblTotalRoomChg As Double
         Dim dblTax As Double
         Dim dblTotalResortFee As Double
         Dim dblTotalDue As Double
+        Dim blnIsRoomReservedOk As Boolean
+        Dim blnIsNightsOk As Boolean
+        Dim blnIsAdultsOk As Boolean
+        'Dim blnIsChildrenOk As Boolean
 
         ' store input in variables
-        Integer.TryParse(txtRooms.Text, intRoomsReserved)
-        Integer.TryParse(txtNights.Text, intNights)
-        Integer.TryParse(txtAdults.Text, intAdults)
-        Integer.TryParse(txtChildren.Text, intChildren)
+        blnIsRoomReservedOk = Integer.TryParse(txtRooms.Text, intRoomsReserved)
+        blnIsNightsOk = Integer.TryParse(txtNights.Text, intNights)
+        blnIsAdultsOk = Integer.TryParse(txtAdults.Text, intAdults)
+        'blnIsChildrenOk = Integer.TryParse(txtChildren.Text, intChildren)
 
-        ' calculate total number of guests
-        intNumGuests = intAdults + intChildren
+        If blnIsRoomReservedOk AndAlso blnIsNightsOk AndAlso blnIsAdultsOk Then
 
-        ' calculate unumber of rooms required
-        dblRoomsRequired = intNumGuests / intMAX_PER_ROOM
+            ' calculate total number of guests
+            intNumGuests = intAdults + intChildren
 
-        ' determine whether number of reserved rooms is adequate and then
-        ' either display a message or calculate and display the charges
-        If intRoomsReserved < dblRoomsRequired Then
-            MessageBox.Show(strMSG, "Treeline Resort", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
-            '  calculate charges
-            dblTotalRoomChg = intRoomsReserved * intNights * dblDAILY_ROOM_CHG
-            dblTax = dblTotalRoomChg * dblTAX_RATE
-            dblTotalResortFee = intRoomsReserved * intNights * dblDAILY_RESORT_FEE
-            dblTotalDue = dblTotalRoomChg + dblTax + dblTotalResortFee
+            ' calculate unumber of rooms required
+            dblRoomsRequired = intNumGuests / intMAX_PER_ROOM
 
-            ' display charges
-            lblRoomChg.Text = dblTotalRoomChg.ToString("n2")
-            lblTax.Text = dblTax.ToString("n2")
-            lblResortFee.Text = dblTotalResortFee.ToString("n2")
-            lblTotalDue.Text = dblTotalDue.ToString("c2")
+            ' determine whether number of reserved rooms is adequate and then
+            ' either display a message or calculate and display the charges
+            If intRoomsReserved < dblRoomsRequired Then
+                MessageBox.Show(strMSG, "Treeline Resort", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                '  calculate charges
+                If radQueen.Checked Then
+                    If radStandard.Checked Then
+                        dblDailyRoomChg = dblDAILY_ROOM_CHG_QUEEN_STD
+                    Else
+                        dblDailyRoomChg = dblDAILY_ROOM_CHG_QUEEN_ATR
+                    End If
+                Else
+                    If radStandard.Checked Then
+                        dblDailyRoomChg = dblDAILY_ROOM_CHG_KING_STD
+                    Else
+                        dblDailyRoomChg = dblDAILY_ROOM_CHG_KING_ATR
+                    End If
+                End If
+
+                dblTotalRoomChg = intRoomsReserved * intNights * dblDailyRoomChg
+                dblTax = dblTotalRoomChg * dblTAX_RATE
+                dblTotalResortFee = intRoomsReserved * intNights * dblDAILY_RESORT_FEE
+                If chkParkingFee.Checked Then
+                    dblParkingFee = intNights * dblDAILY_PARKING_FEE
+                End If
+                dblTotalDue = dblTotalRoomChg + dblTax + dblTotalResortFee + dblParkingFee
+
+                ' display charges
+                lblRoomChg.Text = dblTotalRoomChg.ToString("n2")
+                lblTax.Text = dblTax.ToString("n2")
+                lblResortFee.Text = dblTotalResortFee.ToString("n2")
+                lblParkingFee.Text = dblParkingFee.ToString("n2")
+                lblTotalDue.Text = dblTotalDue.ToString("c2")
+            End If
         End If
     End Sub
 
@@ -65,12 +97,16 @@ Public Class frmMain
 
     Private Sub ClearLabels(sender As Object, e As EventArgs) _
         Handles txtRooms.TextChanged, txtNights.TextChanged,
-        txtAdults.TextChanged, txtChildren.TextChanged
+        txtAdults.TextChanged, txtChildren.TextChanged,
+        radQueen.CheckedChanged, radKing.CheckedChanged,
+        radStandard.CheckedChanged, radAtrium.CheckedChanged,
+        chkParkingFee.CheckedChanged
         ' clear calculated amounts
 
         lblRoomChg.Text = String.Empty
         lblTax.Text = String.Empty
         lblResortFee.Text = String.Empty
+        lblParkingFee.Text = String.Empty
         lblTotalDue.Text = String.Empty
     End Sub
 
@@ -104,5 +140,9 @@ Public Class frmMain
     Private Sub txtChildren_Enter(sender As Object, e As EventArgs) Handles txtChildren.Enter
         ' select contents when text box receives focus
         txtChildren.SelectAll()
+    End Sub
+
+    Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
