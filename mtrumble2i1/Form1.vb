@@ -69,7 +69,6 @@ Public Class Form1
         '#12: Len/Remove
         Dim strRate As String
         Dim intLength As Integer
-        Dim dblTax As Double
         Dim dblRate As Double
         strRate = txt12.Text
         intLength = strRate.Length
@@ -87,5 +86,9 @@ Public Class Form1
         Else
             lbl13.Text = "Invalid Zip"
         End If
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
